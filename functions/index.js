@@ -6,19 +6,19 @@ exports.logTestComplete = functions.testLab
     const { testMatrixId, createTime, state, outcomeSummary } = testMatrix;
 
     switch (outcomeSummary) {
-       case 'success':
+        case 'SUCCESS':
             functions.logger.log(
                 `Test matrix ${testMatrixId} completed successfully at ${createTime}`
             );
-        case 'failure':
+        case 'FAILURE':
             functions.logger.log(
                 `Test matrix ${testMatrixId} failed at ${createTime}`
             );
-        case 'inconclusive':
+        case 'INCONCLUSIVE':
             functions.logger.log(
                 `Test matrix ${testMatrixId} inconclusive at ${createTime}`
             );
-        case 'flaky':
+        case 'FLAKY':
             functions.logger.log(
                 `Test matrix ${testMatrixId} flaky at ${createTime}`
             );
