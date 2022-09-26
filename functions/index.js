@@ -5,7 +5,7 @@ exports.logTestComplete = functions.testLab
   .onComplete(async testMatrix => {
     const { testMatrixId, createTime, state, outcomeSummary } = testMatrix;
 
-    switch (outcomeSummary) {
+    switch (`${outcomeSummary}`) {
         case 'SUCCESS':
             functions.logger.log(
                 `Test matrix ${testMatrixId} completed successfully at ${createTime}`
