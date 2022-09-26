@@ -19,3 +19,6 @@
 1.  Once the test finishes running,
     [view the functions logs](https://console.firebase.google.com/u/0/project/_/functions/logs?severity=DEBUG)
     for your project, and check that the test run status was logged.
+
+## Example output
+`TEST matrix-2pwpy02hkp9wc (created at 2022-09-26T00:25:58.392882Z): FINISHED. SUCCESS`
