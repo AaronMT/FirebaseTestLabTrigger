@@ -48,6 +48,8 @@ function getSlackmoji(term) {
             return ':red_circle:';
         case 'INVALID':
             return ':large_orange_diamond:';
+        case 'FLAKY':
+            return ':warning:';
         default:
         return '';
     }
@@ -56,7 +58,7 @@ function getSlackmoji(term) {
 exports.postTestResultsToSlack = functions.testLab
   .testMatrix()
   .onComplete(async testMatrix => {
-    const { testMatrixId, createTime, state, outcomeSummary } = testMatrix;
+    const { testMatrixId, createTime, state, outcomeSummary, clientInfo } = testMatrix;
 
     const title = `${getSlackmoji(state)} ${getSlackmoji(
         outcomeSummary
@@ -65,6 +67,7 @@ exports.postTestResultsToSlack = functions.testLab
     const details = `Status: *${state}* ${getSlackmoji(
         state
       )}\nOutcome: *${outcomeSummary}* ${getSlackmoji(outcomeSummary)}
+      \nCreated: *${createTime}*\nClient: *${clientInfo.name}*
       `;
 
     switch (outcomeSummary) {
