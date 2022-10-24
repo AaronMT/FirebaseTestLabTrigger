@@ -67,14 +67,13 @@ exports.postTestResultsToSlack = functions.testLab
     const details = `Status: *${state}* ${getSlackmoji(
         state
       )}\nOutcome: *${outcomeSummary}* ${getSlackmoji(outcomeSummary)}
-      \nCreated: *${createTime}*\nClient: *${clientInfo.name}*
+      \nCreated: *${createTime}*\nPull Request: *${clientInfo.details['pullRequest']}*
       `;
 
     switch (outcomeSummary) {
         case 'FLAKY':
             const slackResponse = await postToSlack(title, details);
             functions.logger.log(JSON.stringify(slackResponse.data));
-            break;
         default:
             functions.logger.log(
                 `TEST ${testMatrixId} (created at ${createTime}): ${state}. ${
